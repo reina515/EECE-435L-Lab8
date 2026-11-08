@@ -1,4 +1,4 @@
-
+# use a small python image as the base
 FROM python:3.13-alpine
 
 # copy only the requirements file first so docker can reuse this step if it didn't change
