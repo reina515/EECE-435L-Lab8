@@ -1,7 +1,5 @@
 # Lab 8: Docker Containers and Images
 
-**Reina Hani** (rgh22), EECE 435L Software Tools Lab
-
 ## What's in this folder
 
 | Folder / file | What it is |
