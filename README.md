@@ -20,13 +20,26 @@ docker run -p 5000:5000 -d flask_docker
 
 Open http://localhost:5000 and you should see `Hello World!`.
 
-Commands tried on the running container:
+Docker gave the running container the random name `agitated_dhawan`. These are the commands I ran on it and what each one showed (screenshots are in `screenshots/`):
 
-| Command | What it does |
-|---|---|
-| `docker ps -a` | Lists all containers, running and stopped, with their image, status, ports and name |
-| `docker logs <container_name>` | Shows what the container printed, like Flask starting up and the requests it got |
-| `docker stop <container_name>` | Stops the running container, so its status changes to Exited |
+### `docker ps -a`
+
+Lists every container on the machine, including stopped ones (without `-a` it only shows running ones).
+In my output, the `flask_docker` container `agitated_dhawan` had status **Up 28 seconds**, was running the command `python3 app.py`, and had port `0.0.0.0:5000->5000/tcp`, meaning port 5000 on my laptop is forwarded to port 5000 inside the container.
+The other rows are old containers from earlier labs, all with status **Exited**.
+
+### `docker logs agitated_dhawan`
+
+Shows everything the app inside the container printed to the terminal.
+Mine showed Flask starting up (`Running on all addresses (0.0.0.0)` on port 5000), then two requests from my browser:
+`GET / 200`, which is the Hello World page loading correctly, and `GET /favicon.ico 404`, which is just the browser asking for a tab icon the app doesn't have.
+Because the container runs in the background (`-d`), this is the only way to see that output.
+
+### `docker stop agitated_dhawan`
+
+Stops the running container. Docker printed the container name back to confirm it.
+Running `docker ps -a` again showed `agitated_dhawan` changed from **Up** to **Exited (137)**, and its port mapping disappeared because nothing is listening anymore.
+The container isn't deleted, though: it still shows in the list and can be started again with `docker start agitated_dhawan`.
 
 ## Activity 2: Two images
 
