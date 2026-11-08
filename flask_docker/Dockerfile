@@ -1,4 +1,4 @@
-# start from a small python image so we don't have to install python ourselves
+
 FROM python:3.13-alpine
 
 # copy only the requirements file first so docker can reuse this step if it didn't change
